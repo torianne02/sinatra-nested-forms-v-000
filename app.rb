@@ -1,4 +1,5 @@
 require './environment'
+require 'pry'
 
 module FormsLab
   class App < Sinatra::Base
@@ -11,7 +12,7 @@ module FormsLab
     end
 
     post '/pirates' do
-      @pirate = Pirate.new(params[:pirate])
+      @pirate = Pirate.new(params[:pirate].except("ships"))
 
       params[:pirate][:ships].each do |ship_details|
         Ship.new(ship_details)
